@@ -1,0 +1,30 @@
+<!-- main app container -->
+
+<div class="container-fluid">
+    <div class="form-area">
+        <h3>Subject Form</h3>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="subtitle">Subject Title</label>
+                <input type="text" class="form-control" name="subtitle" [(ngModel)]="model.subtitle" #subtitle="ngModel" [ngClass]="{ 'is-invalid': f.submitted && subtitle.invalid }"
+                    required />
+                <div *ngIf="f.submitted && subtitle.invalid" class="alert alert-danger">
+                    <div *ngIf="subtitle.errors.required">Subject Title is required</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="durationInHours">Duration In Hours</label>
+                <input type="text" class="form-control" name="durationInHours" [(ngModel)]="model.durationInHours" #durationInHours="ngModel" [ngClass]="{ 'is-invalid': f.submitted && durationInHours.invalid }"
+                pattern="[0-9]+" required />
+                <div *ngIf="f.submitted && durationInHours.invalid" class="alert alert-danger">
+                    <div *ngIf="durationInHours.errors.required">Duration In Hours is required</div>
+                    <div *ngIf="durationInHours.errors.pattern">Duration Must be number</div>
+                </div> 
+            </div>            
+            <div class="form-group">
+                <button class="btn btn-primary">Add Subject</button>
+            </div>
+        </form>
+  
+    </div>      
+  </div>

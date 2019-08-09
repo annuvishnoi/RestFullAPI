@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="form-area">
+        <h3>Search Book By Id</h3>
+        <div class="form-group">
+            <input type="text" class="form-control" id="searchTextId" [(ngModel)]="searchText" name="searchText" placeholder="Search By Book Id">
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" [disabled]="!searchText" (click)="searhBook()">Search</button>
+        </div>
+
+        <div class="table-responsive" *ngIf="result">
+            <div>
+                <h3>Search Result</h3>
+            </div>
+            <table class="table" id="expTable">
+                <tr class="success">
+                    <th>Book Id</th>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Volume</th>
+                    <th>Publish Date</th>
+                </tr>
+
+                <tr class="info">
+                    <td>{{result.bookId}}</td>
+                    <td>{{result.title}}</td>
+                    <td>{{result.price}}</td>
+                    <td>{{result.volume}}</td>
+                    <td>{{result.publishDateStr}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+</div>
+

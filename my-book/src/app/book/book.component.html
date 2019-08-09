@@ -1,0 +1,60 @@
+<!-- main app container -->
+
+<div class="container-fluid">
+  <div class="form-area" *ngIf="subjects && subjects.length > 0;else no_data_comp">
+      <h3>Book Form</h3>
+      <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+          <div class="form-group">
+              <label for="title">Book Name</label>
+              <input type="text" class="form-control" name="title" [(ngModel)]="model.title" #title="ngModel" [ngClass]="{ 'is-invalid': f.submitted && title.invalid }"
+                  required />
+              <div *ngIf="f.submitted && title.invalid" class="alert alert-danger">
+                  <div *ngIf="title.errors.required">Book Name is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="price">Price</label>
+              <input type="text" class="form-control" name="price" [(ngModel)]="model.price" #price="ngModel" [ngClass]="{ 'is-invalid': f.submitted && price.invalid }"
+                  required />
+              <div *ngIf="f.submitted && price.invalid" class="alert alert-danger">
+                  <div *ngIf="price.errors.required">Price is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="volume">Volume</label>
+              <input type="text" class="form-control" name="volume" [(ngModel)]="model.volume" #volume="ngModel" [ngClass]="{ 'is-invalid': f.submitted && volume.invalid }"
+                  required/>
+              <div *ngIf="f.submitted && volume.invalid" class="alert alert-danger">
+                  <div *ngIf="volume.errors.required">Volume is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="publishDate">Publish Date</label>
+              <input type="date" class="form-control" name="publishDate" [(ngModel)]="model.publishDate" #publishDate="ngModel" [ngClass]="{ 'is-invalid': f.submitted && publishDate.invalid }"
+                  required/>
+              <div *ngIf="f.submitted && publishDate.invalid" class="alert alert-danger">
+                  <div *ngIf="publishDate.errors.required">Publish Date is required</div>
+              </div>
+          </div>
+          <div class="form-group">
+              <label for="subject">Subject</label>						
+              <select class="form-control"  id="subject"
+                      required
+                      [(ngModel)]="model.subject" name="subject">
+                <option *ngFor="let subject of subjects" [ngValue]="subject">{{subject.subtitle}}</option>
+              </select>
+			</div>
+          <div class="form-group">
+              <button *ngIf="model && model.bookId" class="btn btn-primary">Update Book</button>
+              <button *ngIf="(model && model.bookId == null)" class="btn btn-primary">Add Book</button>
+          </div>
+      </form>
+
+  </div>
+  <ng-template #no_data_comp>
+      <div id="msg">
+        <h2>No Subject available. Please add the subject first.</h2>
+      </div>
+  </ng-template>
+
+</div>

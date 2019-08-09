@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="form-area">
+        <h3>Book List</h3>
+        <div class="table-responsive">
+            <table class="table" id="expTable">
+                <tr class="success">
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>Volume</th>
+                    <th>Publish Date</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <ng-container *ngFor="let book of books">
+                        <tr [ngClass]="{'info': (book.id % 2 == 0), 
+                        'active': (book.id % 2 != 0)}">
+                                <td>{{book.title}}</td>
+                                <td>{{book.price}}</td>
+                                <td>{{book.volume}}</td>
+                                <td>{{book.publishDateStr}}</td>
+                                <td>
+                                    <span class="table-remove">
+                                        <button type="button" class="btn btn-success btn-rounded btn-sm my-0" (click)="edit(book.bookId)">Edit</button>
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="table-remove">
+                                        <button type="button" class="btn btn-danger btn-rounded btn-sm my-0" (click)="delete(book.bookId)">Delete</button>
+                                    </span>
+                                </td>
+                            </tr>
+                </ng-container>
+                
+            </table>
+        </div>
+    </div>    
+</div>  
